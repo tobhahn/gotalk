@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"runtime"
 	"strconv"
+	"strings"
 )
 
 // Compile is an HTTP handler that reads Go source code from the request,
@@ -70,7 +71,7 @@ func compileRequest(req *http.Request) (out []byte, err error) {
 
 	// write body to x.go
 	body := new(bytes.Buffer)
-	if _, err = body.ReadFrom(req.Body); err != nil {
+	if _, err = body.ReadFrom(strings.NewReader(req.URL.Query().Get("q"))); err != nil {
 		return
 	}
 	defer os.Remove(src)

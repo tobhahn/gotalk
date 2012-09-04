@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
-	"strings"
+	"net/url"
 	"testing"
 )
 
@@ -45,7 +45,7 @@ func (w *probeResponseWriter) WriteHeader(statusCode int) {
 }
 
 func Test_compiling_an_empty_request_should_return_404_compiler_error(t *testing.T) {
-	req, err := http.NewRequest("GET", "/compile", strings.NewReader(""))
+	req, err := http.NewRequest("GET", "/", nil)
 	if err != nil {
 		t.Fatalf("Error creating test request: %v", err)
 	}
@@ -70,7 +70,9 @@ func main() {
 `
 
 func Test_compile_hello_世界(t *testing.T) {
-	req, err := http.NewRequest("GET", "/compile", strings.NewReader(hello_世界))
+	params := url.Values{"q": []string{hello_世界}}
+	uri := url.URL{RawQuery: params.Encode()}
+	req, err := http.NewRequest("GET", uri.String(), nil)
 	if err != nil {
 		t.Fatalf("Error creating test request: %v", err)
 	}
