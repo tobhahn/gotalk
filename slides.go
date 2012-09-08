@@ -1,6 +1,7 @@
 package gotalk
 
 import (
+	"bytes"
 	"net/http"
 )
 
@@ -24,6 +25,12 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	slide, _ := slidesFinder.FindID(id)
+	slide, err := slidesFinder.FindID(id)
+	if err != nil {
+		http.NotFound(w, req)
+		w.Write(bytes.NewBufferString(err.Error()).Bytes())
+		return
+	}
+
 	w.Write(slide.(renderer).Render())
 }
