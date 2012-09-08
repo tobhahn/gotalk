@@ -28,6 +28,8 @@ func Test_compile_should_dispatch_to_compile(t *testing.T) {
 }
 
 func Test_slides_1_should_return_a_slide(t *testing.T) {
+	setup_slide_tests()
+
 	req, err := http.NewRequest("GET", "/slides/1", nil)
 	if err != nil {
 		t.Fatalf("Error creating test request: %v", err)

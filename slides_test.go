@@ -1,12 +1,30 @@
 package gotalk
 
 import (
+	"bytes"
 	"net/http"
 	"net/url"
 	"testing"
 )
 
+type fakeSlide string
+type fakeFinder int
+
+func (f fakeFinder) FindID(id string) (data interface{}, err error) {
+	return fakeSlide("<html/>"), nil
+}
+
+func (s fakeSlide) Render() []byte {
+	return bytes.NewBufferString(string(s)).Bytes()
+}
+
+func setup_slide_tests() {
+	slidesFinder = fakeFinder(42)
+}
+
 func Test_slides_expect_id_Query(t *testing.T) {
+	setup_slide_tests()
+
 	params := url.Values{":id": []string{"1"}}
 	uri := url.URL{RawQuery: params.Encode()}
 	req, err := http.NewRequest("GET", uri.String(), nil)
@@ -23,6 +41,8 @@ func Test_slides_expect_id_Query(t *testing.T) {
 }
 
 func Test_slides_without_id_should_return_not_found(t *testing.T) {
+	setup_slide_tests()
+
 	req, err := http.NewRequest("GET", "/slides", nil)
 	if err != nil {
 		t.Fatalf("Error creating test request: %v", err)
