@@ -26,3 +26,17 @@ func Test_compile_should_dispatch_to_compile(t *testing.T) {
 		t.Errorf("Actual: %v", res.response)
 	}
 }
+
+func Test_slides_1_should_return_a_slide(t *testing.T) {
+	req, err := http.NewRequest("GET", "/slides/1", nil)
+	if err != nil {
+		t.Fatalf("Error creating test request: %v", err)
+	}
+
+	var res probeResponseWriter
+	router.ServeHTTP(&res, req)
+
+	if res.status != http.StatusOK {
+		t.Errorf("could not get /slides/1: %v", http.StatusText(res.status))
+	}
+}

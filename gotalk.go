@@ -10,4 +10,5 @@ var (
 
 func init() {
 	router.Get("/compile", compile)
+	router.Get("/slides/{id}", slides)
 }
