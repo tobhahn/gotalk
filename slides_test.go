@@ -16,7 +16,7 @@ func (f fakeFinder) FindID(id string) (data interface{}, err error) {
 		return nil, errors.New("id '" + id + "' does not exist")
 	}
 
-	return fakeSlide("<html><body/></html>"), nil
+	return fakeSlide("<html><head/><body/></html>"), nil
 }
 
 func (s fakeSlide) Render() []byte {

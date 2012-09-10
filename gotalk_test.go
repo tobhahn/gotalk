@@ -46,6 +46,7 @@ func Test_slides_1_should_return_a_slide(t *testing.T) {
 
 type wepPage struct {
 	XMLName xml.Name `xml:"html"`
+	Head    string   `xml:"head"`
 	Body    string   `xml:"body"`
 }
 
@@ -64,11 +65,15 @@ func Test_slides_1_should_return_well_formed_html(t *testing.T) {
 		t.Fatalf("could not get /slides/1: %v", http.StatusText(res.status))
 	}
 
-	slide := wepPage{Body: "none"}
+	slide := wepPage{Head: "none", Body: "none"}
 
 	err = xml.Unmarshal([]byte(res.response), &slide)
 	if err != nil {
 		t.Fatalf("Could not parse response '%v': %v", res.response, err.Error())
+	}
+
+	if slide.Head == "none" {
+		t.Errorf("Response '%v' does not contain a head", res.response)
 	}
 
 	if slide.Body == "none" {
