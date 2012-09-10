@@ -19,7 +19,7 @@ func (f fakeFinder) FindID(id string) (data interface{}, err error) {
 }
 
 func setup_slide_tests() {
-	slidesFinder = fakeFinder(42)
+	SlidesFinder = fakeFinder(42)
 }
 
 func Test_slides_expect_id_Query(t *testing.T) {

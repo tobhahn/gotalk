@@ -6,12 +6,12 @@ import (
 	"net/http"
 )
 
-type finder interface {
+type Finder interface {
 	FindID(id string) (data interface{}, err error)
 }
 
 // needs to be setup before use, e.g. setup_slides_tests() for testing
-var slidesFinder finder
+var SlidesFinder Finder
 
 var slidesTemplate = template.Must(template.ParseFiles(
 	"../templates/_base.html",
@@ -27,7 +27,7 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	slide, err := slidesFinder.FindID(id)
+	slide, err := SlidesFinder.FindID(id)
 	if err != nil {
 		http.NotFound(w, req)
 		w.Write(bytes.NewBufferString(err.Error()).Bytes())
