@@ -1,7 +1,6 @@
 package gotalk
 
 import (
-	"bytes"
 	"errors"
 	"net/http"
 	"net/url"
@@ -16,11 +15,7 @@ func (f fakeFinder) FindID(id string) (data interface{}, err error) {
 		return nil, errors.New("id '" + id + "' does not exist")
 	}
 
-	return fakeSlide("<html><head/><body/></html>"), nil
-}
-
-func (s fakeSlide) Render() []byte {
-	return bytes.NewBufferString(string(s)).Bytes()
+	return fakeSlide(id), nil
 }
 
 func setup_slide_tests() {

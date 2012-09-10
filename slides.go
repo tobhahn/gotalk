@@ -2,12 +2,9 @@ package gotalk
 
 import (
 	"bytes"
+	"html/template"
 	"net/http"
 )
-
-type renderer interface {
-	Render() []byte
-}
 
 type finder interface {
 	FindID(id string) (data interface{}, err error)
@@ -15,6 +12,11 @@ type finder interface {
 
 // needs to be setup before use, e.g. setup_slides_tests() for testing
 var slidesFinder finder
+
+var slidesTemplate = template.Must(template.ParseFiles(
+	"templates/_base.html",
+	"templates/slide.html",
+))
 
 // slides is an HTTP handler that expects an :id query
 // and returns the corresponding slide.
@@ -32,5 +34,5 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	w.Write(slide.(renderer).Render())
+	slidesTemplate.Execute(w, slide)
 }
