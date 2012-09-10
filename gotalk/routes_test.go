@@ -16,7 +16,7 @@ func Test_compile_should_dispatch_to_compile(t *testing.T) {
 	}
 
 	var res probeResponseWriter
-	router.ServeHTTP(&res, req)
+	Router.ServeHTTP(&res, req)
 
 	if res.status != http.StatusOK {
 		t.Fatalf("compile failed with status %v", http.StatusText(res.status))
@@ -37,7 +37,7 @@ func Test_slides_1_should_return_a_slide(t *testing.T) {
 	}
 
 	var res probeResponseWriter
-	router.ServeHTTP(&res, req)
+	Router.ServeHTTP(&res, req)
 
 	if res.status != http.StatusOK {
 		t.Errorf("could not get /slides/1: %v", http.StatusText(res.status))
@@ -59,7 +59,7 @@ func Test_slides_1_should_return_well_formed_html(t *testing.T) {
 	}
 
 	var res probeResponseWriter
-	router.ServeHTTP(&res, req)
+	Router.ServeHTTP(&res, req)
 
 	if res.status != http.StatusOK {
 		t.Fatalf("could not get /slides/1: %v", http.StatusText(res.status))

@@ -14,8 +14,8 @@ type finder interface {
 var slidesFinder finder
 
 var slidesTemplate = template.Must(template.ParseFiles(
-	"templates/_base.html",
-	"templates/slide.html",
+	"../templates/_base.html",
+	"../templates/slide.html",
 ))
 
 // slides is an HTTP handler that expects an :id query
