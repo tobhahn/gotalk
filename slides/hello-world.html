@@ -1,0 +1,29 @@
+<div class="row lead">
+    <div class="span12">
+        <h1>Hello, 世界</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <div class="row">
+            <div class="span8">
+                <textarea id="edit" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
+package main
+
+import ("fmt")
+
+func main() {
+    fmt.Println("Hello, 世界")
+}
+                </textarea>
+                <button type="submit" onclick="compile()" class="btn btn-primary pull-right">Run</button>
+                <div class="alert alert-error" id="errors"></div>
+                <div class="alert alert-success" id="output"></div>
+              </div>
+              <div class="span3 offset1">
+                <div class="row well well-large">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
