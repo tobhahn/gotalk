@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"html/template"
 	"net/http"
+	"reflect"
 )
 
 type Finder interface {
@@ -34,5 +35,5 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	slidesTemplate.Execute(w, slide)
+	slidesTemplate.Execute(w, template.HTML(reflect.ValueOf(slide).String()))
 }
