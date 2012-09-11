@@ -4,26 +4,28 @@
     </div>
 </div>
 <div class="row">
-    <div class="span12">
-        <div class="row">
-            <div class="span8">
-                <textarea id="edit" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
+    <div class="span8">
+        <textarea id="edit" autofocus="true" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
 package main
 
 import ("fmt")
 
 func main() {
-    fmt.Println("Hello, 世界")
+	fmt.Println("Hello, 世界")
 }
-                </textarea>
-                <button type="submit" onclick="compile()" class="btn btn-primary pull-right">Run</button>
-                <div class="alert alert-error" id="errors"></div>
-                <div class="alert alert-success" id="output"></div>
-              </div>
-              <div class="span3 offset1">
-                <div class="row well well-large">
-                </div>
-            </div>
+        </textarea>
+    </div>
+    <div class="span4">
+        <button type="submit" onclick="compile()" class="btn btn-primary">Run</button>
+        <div class="row lead">
         </div>
+        <div class="well well-large">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="span8">
+        <div class="alert alert-error invisible" id="errors"></div>
+        <div class="alert alert-success invisible" id="output"></div>
     </div>
 </div>
