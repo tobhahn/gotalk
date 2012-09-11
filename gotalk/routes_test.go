@@ -80,3 +80,17 @@ func Test_slides_1_should_return_well_formed_html(t *testing.T) {
 		t.Errorf("Response '%v' does not contain a body", res.response)
 	}
 }
+
+func Test_assets_site_css_should_return_a_stylesheet(t *testing.T) {
+	req, err := http.NewRequest("GET", "/css/bootstrap.css", nil)
+	if err != nil {
+		t.Fatalf("Error creating test request: %v", err)
+	}
+
+	var res probeResponseWriter
+	Router.ServeHTTP(&res, req)
+
+	if res.status != http.StatusOK {
+		t.Errorf("could not get /css/bootstrap.css: %v", http.StatusText(res.status))
+	}
+}
