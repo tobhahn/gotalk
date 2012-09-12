@@ -5,7 +5,9 @@
 </div>
 <div class="row">
     <div class="span8">
-        <textarea id="edit" autofocus="true" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
+        <div class="row">
+            <div class="span8">
+                <textarea id="edit" autofocus="true" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
 package main
 
 import ("fmt")
@@ -13,19 +15,21 @@ import ("fmt")
 func main() {
 	fmt.Println("Hello, 世界")
 }
-        </textarea>
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span8">
+                <div class="alert alert-error invisible" id="errors"></div>
+                <div class="alert alert-success invisible" id="output"></div>
+            </div>
+        </div>
     </div>
     <div class="span4">
+        <!-- div class="well well-large" -->
+        <!-- /div -->
         <button type="submit" onclick="compile()" class="btn btn-primary">Run</button>
         <div class="row lead">
         </div>
-        <div class="well well-large">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="span8">
-        <div class="alert alert-error invisible" id="errors"></div>
-        <div class="alert alert-success invisible" id="output"></div>
     </div>
 </div>
