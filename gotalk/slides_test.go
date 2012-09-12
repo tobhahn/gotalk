@@ -15,7 +15,9 @@ func (f fakeFinder) FindID(id string) (data interface{}, err error) {
 		return nil, errors.New("id '" + id + "' does not exist")
 	}
 
-	return fakeSlide("<Slide><Title>" + string(id) + "</Title></Slide>"), nil
+	return fakeSlide(`{
+			"Title": "` + string(id) + `"
+		}`), nil
 }
 
 func setup_slide_tests() {
