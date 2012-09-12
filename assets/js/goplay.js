@@ -77,6 +77,8 @@ function compile() {
     req.open("GET", "/compile?q=" + encodeURIComponent(prog), true);
     req.setRequestHeader("Content-Type", "text/plain; charset=utf-8");
     req.send();
+    $("#output").addClass("hide");
+    $("#errors").addClass("hide");
 }
 
 function compileUpdate() {
@@ -88,12 +90,10 @@ function compileUpdate() {
         document.getElementById("output").innerHTML = req.responseText;
         document.getElementById("errors").innerHTML = "";
         $("#output").removeClass("hide");
-        $("#errors").addClass("hide");
 
     } else {
         document.getElementById("errors").innerHTML = req.responseText;
         document.getElementById("output").innerHTML = "";
         $("#errors").removeClass("hide");
-        $("#output").addClass("hide");
     }
 }
