@@ -87,13 +87,13 @@ function compileUpdate() {
     if(req.status == 200) {
         document.getElementById("output").innerHTML = req.responseText;
         document.getElementById("errors").innerHTML = "";
-        $("#output").removeClass("invisible");
-        $("#errors").addClass("invisible");
+        $("#output").removeClass("hide");
+        $("#errors").addClass("hide");
 
     } else {
         document.getElementById("errors").innerHTML = req.responseText;
         document.getElementById("output").innerHTML = "";
-        $("#errors").removeClass("invisible");
-        $("#output").addClass("invisible");
+        $("#errors").removeClass("hide");
+        $("#output").addClass("hide");
     }
 }
