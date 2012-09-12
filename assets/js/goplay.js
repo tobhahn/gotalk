@@ -79,6 +79,8 @@ function compile() {
     req.send();
     $("#output").addClass("hide");
     $("#errors").addClass("hide");
+    $("#progress").removeClass("hide");
+    $("#progress").addClass("in");
 }
 
 function compileUpdate() {
@@ -86,6 +88,8 @@ function compileUpdate() {
     if(!req || req.readyState != 4) {
         return;
     }
+    $("#progress").addClass("hide");
+    $("#progress").removeClass("in");
     if(req.status == 200) {
         document.getElementById("output").innerHTML = req.responseText;
         document.getElementById("errors").innerHTML = "";

@@ -1,3 +1,7 @@
 textarea {
     color: inherit;
 }
+
+.progress {
+    height: 36px;
+}
