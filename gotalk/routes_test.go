@@ -40,7 +40,8 @@ func Test_slides_1_should_return_a_slide(t *testing.T) {
 	Router.ServeHTTP(&res, req)
 
 	if res.status != http.StatusOK {
-		t.Errorf("could not get /slides/1: %v", http.StatusText(res.status))
+		t.Errorf("Could not get /slides/1: %v", http.StatusText(res.status))
+		t.Errorf("Details:                 %v", res.response)
 	}
 }
 
