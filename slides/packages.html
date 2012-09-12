@@ -1,0 +1,41 @@
+<div class="row lead">
+	<div class="span12">
+		<h1>Packages</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="span8">
+		<div class="row">
+			<div class="span8">
+				<textarea id="edit" autofocus="true" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="8" class="input-block-level">
+package main
+
+import ("fmt"; "math")
+
+func main() {
+	fmt.Println(math.pi)
+}
+				</textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<div class="alert alert-error invisible" id="errors"></div>
+				<div class="alert alert-success invisible" id="output"></div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="well well-large">
+			<ul>
+				<li/> Code is organized in <code>package</code>s
+				<li/> Import using <code>import</code>
+				<li/> Lowercase initial: private
+				<li/> Uppercase initial: exported
+			</ul>
+		</div>
+		<button type="submit" onclick="compile()" class="btn btn-primary">Run</button>
+		<div class="row lead">
+		</div>
+	</div>
+</div>
