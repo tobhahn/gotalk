@@ -1,49 +1,25 @@
-<div class="row lead">
-	<div class="span12">
-		<h1>One loop to rule them all</h1>
-	</div>
-</div>
-<div class="row">
-	<div class="span8">
-		<div class="row">
-			<div class="span8">
-				<textarea id="edit" autofocus="true" spellcheck="false" onkeydown="keyHandler(event);" onkeyup="autocompile();" rows="12" class="input-block-level">
+<Slide>
+	<Title>One loop to rule them all</Title>
+	<Codesample>
 package main
 
 import "fmt"
 
 func main() {
 	sum := 0
-	for i := 0; i < 10; i++ {
+	for i := 0; i &lt; 10; i++ {
 		sum += i
 	}
 	fmt.Println(sum)
 }
-				</textarea>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span8">
-				<div class="alert alert-error hide" id="errors"></div>
-				<div class="alert alert-success hide" id="output"></div>
-				<div id="progress" class="progress progress-warning progress-striped active fade">
-					<div class="bar" style="width: 100%;"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="well well-large">
-			<ul>
-				<li/> basic <code>for</code>-loop as in C++
-				<li/> <em>must not</em> use parentheses
-				<li/> <em>must</em> use curly braces
-				<li/> can omit pre and post statements
-				<li/> can omit condition
-			</ul>
-		</div>
-		<button type="submit" onclick="compile()" class="btn btn-primary">Run</button>
-		<div class="row lead">
-		</div>
-	</div>
-</div>
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> basic <code>for</code>-loop as in C++
+			<li/> <em>must not</em> use parentheses
+			<li/> <em>must</em> use curly braces
+			<li/> can omit pre and post statements
+			<li/> can omit condition
+		</ul>
+	</Notes>
+</Slide>
