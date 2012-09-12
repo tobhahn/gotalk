@@ -2,6 +2,7 @@ package gotalk
 
 import (
 	"bytes"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,6 +13,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // Compile is an HTTP handler that reads Go source code from the request,
@@ -33,6 +35,8 @@ var (
 	tmpdir    string
 	// a source of numbers, for naming temporary files
 	uniq = make(chan int)
+	// timeout for compiling and running
+	cmdTimeout = 3 * time.Second
 )
 
 func init() {
@@ -103,12 +107,26 @@ func error_(w http.ResponseWriter, out []byte, err error) {
 }
 
 // run executes the specified command and returns its output and an error.
-func run(dir string, args ...string) ([]byte, error) {
+func run(dir string, args ...string) (output []byte, err error) {
 	var buf bytes.Buffer
 	cmd := exec.Command(args[0], args[1:]...)
 	cmd.Dir = dir
 	cmd.Stdout = &buf
 	cmd.Stderr = cmd.Stdout
-	err := cmd.Run()
+
+	result := make(chan error)
+	go func() {
+		result <- cmd.Run()
+	}()
+
+	select {
+	case err = <-result: // Command returned
+	case <-time.After(cmdTimeout): // Timeout
+		if err = cmd.Process.Kill(); err == nil {
+			err = errors.New("Timeout")
+			buf.Write([]byte(err.Error()))
+		}
+		<-result // let goroutine finish
+	}
 	return buf.Bytes(), err
 }

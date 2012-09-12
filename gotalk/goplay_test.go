@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"testing"
+	"time"
 )
 
 type probeResponseWriter struct {
@@ -86,6 +87,39 @@ func Test_compile_hello_世界(t *testing.T) {
 
 	if res.response != "Hello, 世界\n" {
 		t.Log(`Expected: Hello, 世界\n`)
+		t.Errorf("Actual: %v", res.response)
+	}
+}
+
+var infiniteLoop = `
+package main
+
+func main() {
+	for {}
+}
+`
+
+func Test_compile_should_timeout(t *testing.T) {
+	oldTimeout := cmdTimeout
+	cmdTimeout = 10 * time.Millisecond
+	defer func() { cmdTimeout = oldTimeout }()
+
+	params := url.Values{"q": []string{infiniteLoop}}
+	uri := url.URL{RawQuery: params.Encode()}
+	req, err := http.NewRequest("GET", uri.String(), nil)
+	if err != nil {
+		t.Fatalf("Error creating test request: %v", err)
+	}
+
+	var res probeResponseWriter
+	compile(&res, req)
+
+	if res.status != http.StatusNotFound {
+		t.Errorf("compile failed with status %v", http.StatusText(res.status))
+	}
+
+	if res.response != "Timeout" {
+		t.Log(`Expected: Timeout`)
 		t.Errorf("Actual: %v", res.response)
 	}
 }
