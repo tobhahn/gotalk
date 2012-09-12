@@ -2,7 +2,7 @@ package gotalk
 
 import (
 	"bytes"
-	"encoding/json"
+	"encoding/xml"
 	"html/template"
 	"net/http"
 	"reflect"
@@ -21,9 +21,14 @@ var slidesTemplate = template.Must(template.ParseFiles(
 ))
 
 type slideFields struct {
+	XMLName    xml.Name `xml:"Slide"`
 	Title      string
 	Codesample string
-	Notes      template.HTML
+	Notes      notes
+}
+
+type notes struct {
+	HTML template.HTML `xml:",innerxml"`
 }
 
 // slides is an HTTP handler that expects an :id query
@@ -45,7 +50,7 @@ func slides(w http.ResponseWriter, req *http.Request) {
 	slide := reflect.ValueOf(data).String()
 
 	var fields slideFields
-	err = json.Unmarshal([]byte(slide), &fields)
+	err = xml.Unmarshal([]byte(slide), &fields)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Could not parse slide: " + err.Error() + "\n"))

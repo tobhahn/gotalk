@@ -28,7 +28,7 @@
 	<div class="span4">
 		{{ if .Notes }}
 		<div class="well well-large">
-			{{ .Notes }}
+			{{ .Notes.HTML }}
 		</div>
 		{{ end }}
 		{{ if .Codesample }}
@@ -39,6 +39,6 @@
 	</div>
 </div>
 {{ else }}
-	{{ .Notes }}
+	{{ .Notes.HTML }}
 {{ end }}
 {{ end }}
