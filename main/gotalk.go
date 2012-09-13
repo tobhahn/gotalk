@@ -28,6 +28,7 @@ func main() {
 		"function-return",
 		"function-literals",
 		"for-loop",
+		"errors",
 	}}
 
 	slidesDir, err := filepath.Abs("../slides")

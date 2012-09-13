@@ -1,0 +1,26 @@
+<Slide>
+	<Title>Error Handling</Title>
+	<Codesample>
+package main; import ("fmt"; "errors")
+
+func div(a, b int) (int, int, error) {
+	if b == 0 {
+		return 0, 0, errors.New("Div by 0")
+	}
+	return a / b, a - b * (a / b), nil
+}
+
+func main() {
+	q, r, e := div(42, 0)
+	fmt.Printf("q: %v, r: %v, e: %v", q, r, e)
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> no assertions
+			<li/> no exceptions
+			<li/> functions expected to report errors
+			<li/> callers expected to handle errors
+		</ul>
+	</Notes>
+</Slide>
