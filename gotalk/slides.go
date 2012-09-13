@@ -8,6 +8,9 @@ import (
 	"reflect"
 )
 
+// the one and only presentation
+var Presentation presentation
+
 type Finder interface {
 	FindID(id string) (data interface{}, err error)
 }
@@ -20,6 +23,11 @@ var slidesTemplate = template.Must(template.ParseFiles(
 	"../templates/slide.html",
 ))
 
+type slideParams struct {
+	slideFields
+	pager
+}
+
 type slideFields struct {
 	XMLName    xml.Name `xml:"Slide"`
 	Title      string
@@ -29,6 +37,11 @@ type slideFields struct {
 
 type notes struct {
 	HTML template.HTML `xml:",innerxml"`
+}
+
+type pager struct {
+	Prev string
+	Next string
 }
 
 // slides is an HTTP handler that expects an :id query
@@ -47,6 +60,9 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	prev, _ := Presentation.Prev(id)
+	next, _ := Presentation.Next(id)
+
 	slide := reflect.ValueOf(data).String()
 
 	var fields slideFields
@@ -58,5 +74,5 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	slidesTemplate.Execute(w, fields)
+	slidesTemplate.Execute(w, slideParams{fields, pager{prev, next}})
 }
