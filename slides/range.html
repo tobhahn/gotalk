@@ -1,0 +1,25 @@
+<Slide>
+	<Title>One loop to rule them all – even more</Title>
+	<Codesample>
+package main
+
+import "fmt"
+
+func main() {
+	words := []string{"hello", "world"}
+
+	for i, w := range words {
+		fmt.Printf("'%v' is at '%v'\n", w, i)
+	}
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> basic <code>for</code>-loop as in C++
+			<li/> <em>must not</em> use parentheses
+			<li/> <em>must</em> use curly braces
+			<li/> can omit pre and post statements
+			<li/> can omit condition
+		</ul>
+	</Notes>
+</Slide>

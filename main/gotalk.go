@@ -30,6 +30,7 @@ func main() {
 		"function-literals",
 		"methods",
 		"for-loop",
+		"range",
 		"errors",
 		"panic",
 		"defer",
