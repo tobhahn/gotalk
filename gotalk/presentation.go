@@ -4,8 +4,8 @@ import (
 	"errors"
 )
 
-type presentation struct {
-	slides []string
+type Presentation struct {
+	Slides []string
 }
 
 func indexOf(x string, slice []string) (int, error) {
@@ -17,22 +17,22 @@ func indexOf(x string, slice []string) (int, error) {
 	return -1, errors.New("Not found: %v" + x)
 }
 
-func (p presentation) Next(id string) (nextId string, err error) {
-	i, err := indexOf(id, p.slides)
+func (p Presentation) Next(id string) (nextId string, err error) {
+	i, err := indexOf(id, p.Slides)
 
 	if err != nil {
 		return "", errors.New("Slide not found: " + id)
 	}
 
-	if i+1 == len(p.slides) {
+	if i+1 == len(p.Slides) {
 		return "", errors.New("Last slide: " + id)
 	}
 
-	return p.slides[i+1], nil
+	return p.Slides[i+1], nil
 }
 
-func (p presentation) Prev(id string) (nextId string, err error) {
-	i, err := indexOf(id, p.slides)
+func (p Presentation) Prev(id string) (nextId string, err error) {
+	i, err := indexOf(id, p.Slides)
 
 	if err != nil {
 		return "", errors.New("Slide not found: " + id)
@@ -42,5 +42,5 @@ func (p presentation) Prev(id string) (nextId string, err error) {
 		return "", errors.New("First slide: " + id)
 	}
 
-	return p.slides[i-1], nil
+	return p.Slides[i-1], nil
 }

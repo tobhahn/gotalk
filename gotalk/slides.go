@@ -9,7 +9,7 @@ import (
 )
 
 // the one and only presentation
-var Presentation presentation
+var P Presentation
 
 type Finder interface {
 	FindID(id string) (data interface{}, err error)
@@ -60,8 +60,8 @@ func slides(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	prev, _ := Presentation.Prev(id)
-	next, _ := Presentation.Next(id)
+	prev, _ := P.Prev(id)
+	next, _ := P.Next(id)
 
 	slide := reflect.ValueOf(data).String()
 

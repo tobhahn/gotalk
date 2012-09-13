@@ -19,6 +19,17 @@ func (dir loadSlidesFinder) FindID(id string) (data interface{}, err error) {
 }
 
 func main() {
+	gotalk.P = gotalk.Presentation{[]string{
+		"title",
+		"hello-world",
+		"packages",
+		"types",
+		"functions",
+		"function-return",
+		"function-literals",
+		"for-loop",
+	}}
+
 	slidesDir, err := filepath.Abs("../slides")
 	if err != nil {
 		panic(err)
