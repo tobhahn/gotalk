@@ -1,0 +1,26 @@
+<Slide>
+	<Title>Channels</Title>
+	<Codesample>
+package main; import ("fmt"; "time")
+
+func main() {
+	result := make(chan string)
+	go func() {
+		time.Sleep(20*time.Millisecond)
+		result &lt;- "Done." }()
+	select {
+	case r := &lt;-result:
+		fmt.Println(r)
+	case &lt;-time.After(time.Second):
+		fmt.Println("Timed out waiting.")
+	}
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> sending and receiving blocks by default
+			<li/> <code>select</code> uses first available value
+			<li/> <code>select</code> does not fall-through
+		</ul>
+	</Notes>
+</Slide>
