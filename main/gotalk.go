@@ -32,6 +32,7 @@ func main() {
 		"range",
 		"structs",
 		"composition",
+		"interfaces",
 		"errors",
 		"panic",
 		"defer",

@@ -1,0 +1,24 @@
+<Slide>
+	<Title>Interfaces – if it quacks like a duck…</Title>
+	<Codesample>
+package main; import ("fmt")
+
+type Printer interface {
+	Print()
+}
+type myInt int
+func (i myInt) Print() { fmt.Println(i) }
+
+func log(p Printer) { p.Print() }
+func main() {
+	log(myInt(42))
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> static duck typing – no need to declare conformance
+			<li/> encourages precise interfaces
+			<li/> decouples implementation from interface
+		</ul>
+	</Notes>
+</Slide>
