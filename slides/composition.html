@@ -1,0 +1,23 @@
+<Slide>
+	<Title>Compose! (No Inheritance)</Title>
+	<Codesample>
+package main; import ("fmt")
+
+type dial struct { Intensity float64 }
+type transmog struct {
+	dial
+	owner string
+}
+
+func main() {
+	t := transmog{dial{2.5}, "Mine"}
+	fmt.Println(t.Intensity)
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> There is no type inheritance
+			<li/> <code>struct</code>s can contain <em>anonymous fields</em>
+		</ul>
+	</Notes>
+</Slide>

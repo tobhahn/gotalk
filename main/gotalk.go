@@ -31,6 +31,7 @@ func main() {
 		"for-loop",
 		"range",
 		"structs",
+		"composition",
 		"errors",
 		"panic",
 		"defer",
