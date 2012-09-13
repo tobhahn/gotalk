@@ -1,0 +1,23 @@
+<Slide>
+	<Title>Methods</Title>
+	<Codesample>
+package main; import ("fmt")
+
+type transmog struct { Intensity float64 }
+func (t transmog) inc() {
+	t.Intensity++
+}
+
+func main() {
+	t := &amp;transmog{0}; t.inc(); t.inc()
+	fmt.Println(t);
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> methods can be defined on any type in the current package (not just structs)
+			<li/> no implicit <code>this</code>
+			<li/> <em>receiver</em> arg before name
+		</ul>
+	</Notes>
+</Slide>

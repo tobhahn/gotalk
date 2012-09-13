@@ -28,6 +28,7 @@ func main() {
 		"functions",
 		"function-return",
 		"function-literals",
+		"methods",
 		"for-loop",
 		"errors",
 		"panic",
