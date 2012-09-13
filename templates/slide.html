@@ -1,11 +1,19 @@
 {{ define "content" }}
-{{ if .Title }}
 <div class="row lead">
-	<div class="span12">
+	{{ if .Title }}
+	<div class="span8">
 		<h1>{{ .Title }}</h1>
 	</div>
+	<div class="span4">
+	{{ else }}
+	<div class="span4 offset8">
+	{{ end }}
+		<ul class="pager pager-top">
+			{{ if .Prev }} <li class="previous"><a href="{{ .Prev }}">&larr;</a> {{end}}
+			{{ if .Next }} <li class="next"><a href="{{ .Next }}">&rarr;</a> {{end}}
+		</ul>
+	</div>
 </div>
-{{ end }}
 {{ if .Codesample }}
 <div class="row">
 	<div class="span8">
@@ -41,9 +49,5 @@
 {{ else }}
 	{{ .Notes.HTML }}
 {{ end }}
-		<ul class="pager">
-			{{ if .Prev }} <li class="previous"><a href="{{ .Prev }}">&larr;</a> {{end}}
-			{{ if .Next }} <li class="next"><a href="{{ .Next }}">&rarr;</a> {{end}}
-		</ul>
 
 {{ end }}

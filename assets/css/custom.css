@@ -5,3 +5,7 @@ textarea {
 .progress {
     height: 36px;
 }
+
+.pager-top{
+    margin: 22.5px;
+}
