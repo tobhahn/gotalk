@@ -41,4 +41,9 @@
 {{ else }}
 	{{ .Notes.HTML }}
 {{ end }}
+		<ul class="pager">
+			{{ if .Prev }} <li class="previous"><a href="{{ .Prev }}">&larr;</a> {{end}}
+			{{ if .Next }} <li class="next"><a href="{{ .Next }}">&rarr;</a> {{end}}
+		</ul>
+
 {{ end }}
