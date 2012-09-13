@@ -30,3 +30,17 @@ func (p presentation) Next(id string) (nextId string, err error) {
 
 	return p.slides[i+1], nil
 }
+
+func (p presentation) Prev(id string) (nextId string, err error) {
+	i, err := indexOf(id, p.slides)
+
+	if err != nil {
+		return "", errors.New("Slide not found: " + id)
+	}
+
+	if i == 0 {
+		return "", errors.New("First slide: " + id)
+	}
+
+	return p.slides[i-1], nil
+}
