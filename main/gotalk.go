@@ -24,6 +24,7 @@ func main() {
 		"hello-world",
 		"packages",
 		"types",
+		"structs",
 		"functions",
 		"function-return",
 		"function-literals",

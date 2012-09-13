@@ -1,0 +1,24 @@
+<Slide>
+	<Title>struct</Title>
+	<Codesample>
+package main;
+import ("fmt")
+
+type transmog struct {
+	Intensity float64
+}
+
+func main() {
+	var t1 transmog
+	var t2 *transmog = &amp;transmog{2.5}
+	fmt.Printf("t1: '%v'\nt2: '%v'", t1, t2)
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> <code>struct</code>s are go's composite types
+			<li/> everything 0-initialized by default
+			<li/> go is garbage-collected
+		</ul>
+	</Notes>
+</Slide>
