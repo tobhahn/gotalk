@@ -1,0 +1,24 @@
+<Slide>
+	<Title>defer</Title>
+	<Codesample>
+package main;
+import ("bytes"; "fmt"; "os")
+
+func main() {
+	f, err := os.Open("gotalk.go")
+	if err != nil {
+		panic("It's already past 5.30pm!")
+	}
+	defer f.Close()
+        var b bytes.Buffer;	b.ReadFrom(f)
+	fmt.Println(b.String())
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> <code>defer</code>s function call to <code>return</code>
+			<li/> like C++-destructor of object on stack, but explicit
+			<li/> e.g. close file, unlock mutex etc.
+		</ul>
+	</Notes>
+</Slide>
