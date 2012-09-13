@@ -1,0 +1,21 @@
+<Slide>
+	<Title>Panic!!</Title>
+	<Codesample>
+package main;
+import ("fmt"; "os")
+
+func main() {
+	pass := os.Getenv("DB_PASSWORD")
+	if pass == "" {
+		panic("No $DB_PASSWORD")
+	}
+	fmt.Printf("Password is '%v'", pass)
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> use when it does not make sense to continue
+			<li/> libraries should not panic
+		</ul>
+	</Notes>
+</Slide>
