@@ -36,6 +36,7 @@ func main() {
 		"errors",
 		"panic",
 		"defer",
+		"concurrency",
 	}}
 
 	slidesDir, err := filepath.Abs("../slides")

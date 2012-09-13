@@ -1,0 +1,23 @@
+<Slide>
+	<Title>Share by communicating!</Title>
+	<Codesample>
+package main; import ("fmt")
+
+func main() {
+	result := make(chan string)
+	go func() {
+		fmt.Println("¡Hola mundo!")
+		result &lt;- "Done."
+	}()
+	fmt.Println(&lt;- result)
+}
+	</Codesample>
+	<Notes>
+		<ul>
+			<li/> <code>go f()</code> executes <code>f()</code> on new goroutine
+			<li/> a <em>goroutine</em> is a lightweight thread
+			<li/> communicate using channels
+			<li/> goroutines multiplexed on os threads
+		</ul>
+	</Notes>
+</Slide>
