@@ -10,18 +10,22 @@ How to run the presentation:
 
 2. Clone this repo into your ${GOPATH}/src.
 
+    $ cd ${GOPATH}
+    $ mkdir src
+    $ git clone https://github.com/tobhahn/gotalk.git
+
 3. Get the dependencies
 
-    $ cd ${GOPATH}/src/gotalk
+    $ cd ${GOPATH}/src/gotalk/gotalk
     $ go get
 
 4. Run the package tests
 
-    $ go test gotalk/gotalk
+    $ go test
 
 5. Run the app
 
-    $ cd main
+    $ cd ../main
     $ go run gotalk.go
 
 6. Open http://localhost:8080
