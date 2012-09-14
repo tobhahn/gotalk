@@ -15,4 +15,5 @@ func init() {
 	Router.Add("GET", "/css", http.FileServer(http.Dir("../assets")))
 	Router.Add("GET", "/js", http.FileServer(http.Dir("../assets")))
 	Router.Add("GET", "/img", http.FileServer(http.Dir("../assets")))
+	Router.Add("GET", "/", http.RedirectHandler("/slides/title", http.StatusFound))
 }
