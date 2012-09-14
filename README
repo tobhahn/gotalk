@@ -1,0 +1,31 @@
+How to run the presentation:
+
+1. Setup your go environment
+
+    - Install go from http://golang.org/doc/install if necessary
+    - Install Mercurial (hg) from http://mercurial.selenic.com if necessary
+    - Create a directory to hold go code somewhere, e.g. ${USER}/gocode
+    - Add a new environment variable GOPATH=${USER}/gocode to your .profile or similar
+      (see http://golang.org/cmd/go/#GOPATH_environment_variable)
+
+2. Clone this repo into your ${GOPATH}/src.
+
+3. Get the dependencies
+
+    $ cd ${GOPATH}/src/gotalk
+    $ go get
+
+4. Run the package tests
+
+    $ go test gotalk/gotalk
+
+5. Run the app
+
+    $ cd main
+    $ go run gotalk.go
+
+6. Open http://localhost:8080
+
+    Note that anybody with access to this app can execute **arbitrary code** on the
+    machine running it. It __must__ be secured before deploying it publicly. You have
+    been warned.
